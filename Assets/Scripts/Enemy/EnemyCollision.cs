@@ -9,6 +9,7 @@ public class EnemyCollision : MonoBehaviour
     {
         if (collider.CompareTag("Sword"))
         {
+            Debug.Log("enemy + sword collision");
             _enemyHealth.TakeDamage(damage);
         }
     }

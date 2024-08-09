@@ -10,17 +10,22 @@ public class AttackState : IState
         characterManager.MonoBehaviourInstance.StartCoroutine(Attack());
     }
 
-    public IEnumerator Attack()
+    private IEnumerator Attack()
     {
+        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(true);
+
         characterManager.AnimatorInstance.SetBool("isAttack", true);
         AnimatorClipInfo[] stateInfo = characterManager.AnimatorInstance.GetCurrentAnimatorClipInfo(0);
-        yield return new WaitForSeconds(stateInfo.Length);
+        yield return new WaitForSeconds(stateInfo.Length); 
+        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(false);
         characterManager.AnimatorInstance.SetBool("isAttack", false);
         isComplete = true;
-
     }
 
     public override void OnUpdate() { }
 
-    public override void OnExit() { }
+    public override void OnExit()
+    {
+        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(false);
+    }
 }

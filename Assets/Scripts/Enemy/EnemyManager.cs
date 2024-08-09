@@ -8,11 +8,12 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
     internal WalkState walkState;
     //internal HurtState hurtState;
     internal DeadState deadState;
-    internal AttackState attackState;
+    //internal AttackState attackState;
     internal StateMachine stateMachine;
 
     public static EnemyManager instance;
     public EnemyMovement enemyMovement;
+    public Collider weaponCollider;
     internal GameObject player;
 
     ICharacterManager enemyManager;
@@ -32,7 +33,7 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
         idleState = new IdleState(enemyManager);
         walkState = new WalkState(enemyManager);
         deadState = new DeadState(enemyManager);
-        attackState = new AttackState(enemyManager);
+        //attackState = new AttackState(enemyManager, weaponCollider);
         //hurtState = new HurtState(enemyManager);
 
         stateMachine.Set(idleState);
@@ -66,10 +67,10 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
         stateMachine.Set(deadState);
     }
 
-    public void HandleAttackState()
-    {
-        stateMachine.Set(attackState);
-    }
+    //public void HandleAttackState()
+    //{
+    //    stateMachine.Set(attackState);
+    //}
 
     public void HandleIdleState()
     {

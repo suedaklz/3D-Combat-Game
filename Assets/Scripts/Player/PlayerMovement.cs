@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         _playerManager = PlayerManager.instance;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         xInput = Input.GetAxis("Horizontal");
         zInput = Input.GetAxis("Vertical");
@@ -32,16 +32,19 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = new Vector3(xInput, 0, zInput).normalized ;
         Vector3 moveDir = CheckDirection(moveDirection) * moveSpeed ;
 
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             _playerManager.HandleCombatState(); //combat state
             inCombatState = !inCombatState;
+            Debug.Log("in combat state : " + inCombatState);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             if (inCombatState)
             {
+                Debug.Log("mouse click");
+
                 _playerManager.HandleAttackState(); //attack state
             }
         }

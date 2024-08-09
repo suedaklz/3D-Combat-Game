@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public PlayerManager playerManager;
+    public HealthBar healthBar;
 
     public int maxHealth = 10;
     public int health;
@@ -10,6 +11,12 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetHealth(health);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -18,11 +25,20 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            //playerManager.HandleDeadState();
+            playerManager.HandleDeadState();
         }
         else
         {
-            //playerManager.HandleHurtState();
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(health);
+            }
+            //_enemyManager.HandleHurtState();
         }
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

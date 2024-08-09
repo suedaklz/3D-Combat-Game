@@ -14,8 +14,8 @@ public class EnemyAttack: MonoBehaviour
         if (timer > 5)
         {
             timer = 0;
-            if (_enemyManager.stateMachine.state == _enemyManager.walkState)
-                _enemyManager.HandleAttackState();
+            //if (_enemyManager.stateMachine.state == _enemyManager.walkState)
+               // _enemyManager.HandleAttackState();
         }
     }
 }

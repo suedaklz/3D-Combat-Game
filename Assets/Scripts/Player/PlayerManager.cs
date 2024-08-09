@@ -7,10 +7,11 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
     internal WalkState walkState;
     internal RunState runState;
     //internal HurtState hurtState;
-    //internal DeadState deadState;
+    internal DeadState deadState;
     internal CombatState combatState;
     internal AttackState attackState;
     internal StateMachine stateMachine;
+
     public static PlayerManager instance;
     public PlayerMovement playerMovement;
 
@@ -30,7 +31,7 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
         idleState = new IdleState(playerManager);
         walkState = new WalkState(playerManager);
         runState = new RunState(playerManager);
-        //deadState = new DeadState(playerManager);
+        deadState = new DeadState(playerManager);
         attackState = new AttackState(playerManager);
         combatState = new CombatState(playerManager);
         //hurtState = new HurtState(playerManager);
@@ -71,10 +72,10 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
     //        stateMachine.Set(hurtState);
     //}
 
-    //public void HandleDeadState()
-    //{
-    //    stateMachine.Set(deadState);
-    //}
+    public void HandleDeadState()
+    {
+        stateMachine.Set(deadState);
+    }
 
     public void HandleAttackState()
     {

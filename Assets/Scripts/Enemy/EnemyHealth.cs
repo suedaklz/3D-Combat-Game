@@ -5,14 +5,14 @@ public class EnemyHealth : MonoBehaviour
     public EnemyManager _enemyManager;
     public HealthBar healthBar; // Reference to the HealthBar script
 
-    private Animator _animator;
+    //private Animator _animator;
 
     public int maxHealth = 10;
     public int health;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
         health = maxHealth;
 
         if (healthBar != null)
@@ -22,9 +22,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log("enemy health: " + health);
 
         if (health <= 0)
         {
@@ -38,5 +40,10 @@ public class EnemyHealth : MonoBehaviour
             }
             //_enemyManager.HandleHurtState();
         }
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

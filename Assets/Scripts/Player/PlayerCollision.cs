@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Enemy"))
+        if (collider.CompareTag("EnemyWeapon"))
         {
             playerHealth.TakeDamage(damage);
         }

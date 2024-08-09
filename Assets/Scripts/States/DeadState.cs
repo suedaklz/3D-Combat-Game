@@ -18,7 +18,6 @@ public class DeadState : IState
         AnimatorClipInfo[] stateInfo = characterManager.AnimatorInstance.GetCurrentAnimatorClipInfo(0);
         yield return new WaitForSeconds(stateInfo.Length);
         characterManager.AnimatorInstance.SetBool("isDead", false);
-        GameObject.Destroy(characterManager.MonoBehaviourInstance.gameObject);
     }
 
     public override void OnUpdate() { }
