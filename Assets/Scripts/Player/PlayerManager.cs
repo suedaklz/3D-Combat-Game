@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
         walkState = new WalkState(playerManager);
         runState = new RunState(playerManager);
         deadState = new DeadState(playerManager);
-        attackState = new AttackState(playerManager);
+        attackState = new AttackState(playerManager, playerManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>());
         combatState = new CombatState(playerManager);
         //hurtState = new HurtState(playerManager);
 

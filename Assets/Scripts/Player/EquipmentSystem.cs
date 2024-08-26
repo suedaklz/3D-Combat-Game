@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EquipmentSystem : MonoBehaviour
+public class EquipmentSystem : MonoBehaviour, IColliderManager
 {
     [SerializeField] GameObject weaponHolder;
     [SerializeField] GameObject weapon;
@@ -37,7 +37,7 @@ public class EquipmentSystem : MonoBehaviour
         Destroy(currentWeaponInHand);
     }
 
-    public void SetWeaponColliderActive(bool isActive)
+    public void SetColliderActive(bool isActive)
     {
         if (weaponCollider != null)
         {

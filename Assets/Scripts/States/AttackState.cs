@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    public AttackState(ICharacterManager characterManager) : base(characterManager) { }
+    private IColliderManager _colliderManager;
+
+    public AttackState(ICharacterManager characterManager, IColliderManager colliderManager) : base(characterManager) {
+        _colliderManager = colliderManager;
+    }
 
     public override void OnEnter()
     {
@@ -12,12 +16,16 @@ public class AttackState : IState
 
     private IEnumerator Attack()
     {
-        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(true);
+        // Activate the collider
+        _colliderManager.SetColliderActive(true);
 
+        // Play attack animation
         characterManager.AnimatorInstance.SetBool("isAttack", true);
         AnimatorClipInfo[] stateInfo = characterManager.AnimatorInstance.GetCurrentAnimatorClipInfo(0);
-        yield return new WaitForSeconds(stateInfo.Length); 
-        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(false);
+        yield return new WaitForSeconds(stateInfo[0].clip.length); // Use clip length of the current animation
+
+        // Deactivate the collider
+        _colliderManager.SetColliderActive(false);
         characterManager.AnimatorInstance.SetBool("isAttack", false);
         isComplete = true;
     }
@@ -26,6 +34,7 @@ public class AttackState : IState
 
     public override void OnExit()
     {
-        characterManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>().SetWeaponColliderActive(false);
+        // Ensure the collider is disabled when exiting the attack state
+        _colliderManager.SetColliderActive(false);
     }
 }

@@ -1736,6 +1736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyManager: {fileID: 2574090848720447192}
+  weaponCollider: {fileID: 5955151199438849689}
 --- !u!1 &4459043756129270487
 GameObject:
   m_ObjectHideFlags: 0
