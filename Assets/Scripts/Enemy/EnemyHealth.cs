@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyManager _enemyManager;
-    public HealthBar healthBar; // Reference to the HealthBar script
+    public HealthBar healthBar; 
 
     //private Animator _animator;
 
@@ -12,7 +12,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        //_animator = GetComponent<Animator>();
         health = maxHealth;
 
         if (healthBar != null)
@@ -38,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 healthBar.SetHealth(health);
             }
-            //_enemyManager.HandleHurtState();
+            _enemyManager.HandleHurtState();
         }
     }
 

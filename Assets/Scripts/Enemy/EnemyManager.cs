@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
 {
     internal IdleState idleState;
     internal WalkState walkState;
-    //internal HurtState hurtState;
+    internal HurtState hurtState;
     internal DeadState deadState;
     internal AttackState attackState;
     internal StateMachine stateMachine;
@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
         walkState = new WalkState(enemyManager);
         deadState = new DeadState(enemyManager);
         attackState = new AttackState(enemyManager, enemyManager.MonoBehaviourInstance.GetComponent<EnemyAttack>());
-        //hurtState = new HurtState(enemyManager);
+        hurtState = new HurtState(enemyManager);
 
         stateMachine.Set(idleState);
     }
@@ -57,10 +57,10 @@ public class EnemyManager : MonoBehaviour, ICharacterManager
         }
     }
 
-    //public void HandleHurtState()
-    //{
-    //    stateMachine.Set(hurtState);
-    //}
+    public void HandleHurtState()
+    {
+        stateMachine.Set(hurtState);
+    }
 
     public void HandleDeadState()
     {

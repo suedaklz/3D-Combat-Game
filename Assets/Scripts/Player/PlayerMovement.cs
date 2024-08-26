@@ -43,9 +43,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if (inCombatState)
             {
-                Debug.Log("mouse click");
-
                 _playerManager.HandleAttackState(); //attack state
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (inCombatState)
+            {
+                _playerManager.HandleDefendState();
             }
         }
 

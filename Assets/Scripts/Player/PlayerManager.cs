@@ -6,10 +6,11 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
     internal IdleState idleState;
     internal WalkState walkState;
     internal RunState runState;
-    //internal HurtState hurtState;
+    internal HurtState hurtState;
     internal DeadState deadState;
     internal CombatState combatState;
     internal AttackState attackState;
+    internal DefendState defendState;
     internal StateMachine stateMachine;
 
     public static PlayerManager instance;
@@ -34,7 +35,8 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
         deadState = new DeadState(playerManager);
         attackState = new AttackState(playerManager, playerManager.MonoBehaviourInstance.GetComponent<EquipmentSystem>());
         combatState = new CombatState(playerManager);
-        //hurtState = new HurtState(playerManager);
+        hurtState = new HurtState(playerManager);
+        defendState = new DefendState(playerManager);
 
         stateMachine.Set(idleState);
     }
@@ -66,11 +68,11 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
             stateMachine.Set(runState);
     }
 
-    //public void HandleHurtState()
-    //{
-    //    if (kachujinMovement.animator.GetBool("isDead") == false)
-    //        stateMachine.Set(hurtState);
-    //}
+    public void HandleHurtState()
+    {
+        if (playerMovement.animator.GetBool("isDead") == false)
+            stateMachine.Set(hurtState);
+    }
 
     public void HandleDeadState()
     {
@@ -79,10 +81,14 @@ public class PlayerManager : MonoBehaviour, ICharacterManager
 
     public void HandleAttackState()
     {
-        Debug.Log("Set state attack state");
-
         if (playerMovement.animator.GetBool("isDead") == false)
             stateMachine.Set(attackState);
+    }
+
+    public void HandleDefendState()
+    {
+        if (playerMovement.animator.GetBool("isDead") == false)
+            stateMachine.Set(defendState);
     }
 
     public void HandleCombatState()

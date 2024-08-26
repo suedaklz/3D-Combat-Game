@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 healthBar.SetHealth(health);
             }
-            //_enemyManager.HandleHurtState();
+            playerManager.HandleHurtState();
         }
     }
 
