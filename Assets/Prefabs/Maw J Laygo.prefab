@@ -1723,6 +1723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   _enemyHealth: {fileID: -3457635591514468311}
+  bloodEffect: {fileID: 3463157229188906966, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
+  damageTextGo: {fileID: 8313451663106579710, guid: e5c622471e68d6e47848a4d93b1a9453, type: 3}
 --- !u!114 &8238378387283083657
 MonoBehaviour:
   m_ObjectHideFlags: 0

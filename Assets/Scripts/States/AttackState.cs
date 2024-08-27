@@ -22,7 +22,7 @@ public class AttackState : IState
         // Play attack animation
         characterManager.AnimatorInstance.SetBool("isAttack", true);
         AnimatorClipInfo[] stateInfo = characterManager.AnimatorInstance.GetCurrentAnimatorClipInfo(0);
-        yield return new WaitForSeconds(stateInfo[0].clip.length); // Use clip length of the current animation
+        yield return new WaitForSeconds(stateInfo.Length); // Use clip length of the current animation
 
         // Deactivate the collider
         _colliderManager.SetColliderActive(false);

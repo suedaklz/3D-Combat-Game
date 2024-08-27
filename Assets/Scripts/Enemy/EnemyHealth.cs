@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyManager _enemyManager;
-    public HealthBar healthBar; 
+    public HealthBar healthBar;
 
     //private Animator _animator;
 
